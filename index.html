@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Rashieca ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#fff0f5;
+  --bg2:#fef6ff;
+  --card:#ffffffee;
+  --accent:#ff6b9a;
+  --accent-soft:#ffd1e1;
+  --text:#2b2b2b;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(160deg,var(--bg),var(--bg2));
+  font-family:'Poppins',sans-serif;
+  transition:background 1s ease;
+  color:var(--text);
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9;
+}
+
+.card{
+  width:min(760px,94vw);
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border-radius:28px;
+  padding:38px 30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.15);
+  text-align:center;
+  animation:fade .7s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,42px);
+  margin-bottom:16px;
+}
+
+p{
+  font-size:17px;
+  line-height:1.75;
+  opacity:.95;
+  margin-bottom:14px;
+}
+
+button{
+  margin-top:28px;
+  padding:15px 30px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),#ff4d7d);
+  color:white;
+  font-size:17px;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(255,107,154,.45);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 36px rgba(255,107,154,.55);
+}
+
+.secondary{
+  background:#f3f4f6;
+  color:#111;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  margin-left:12px;
+}
+
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<!-- PAGE 1 -->
+<section class="card" id="p1">
+  <h1>Rashieca ❤️</h1>
+
+  <p>
+    You already know I’m yours. 🫶  
+    And I already know you’re mine.
+  </p>
+
+  <p>
+    But I still wanted to ask you properly…  
+    In a small, special way ✨
+  </p>
+
+  <h1>Will you be my Valentine, my love? 💗</h1>
+
+  <button onclick="next(1)">Yes </button>
+  <button class="secondary" onclick="playfulNo()">No </button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="card hidden" id="p2">
+  <p>
+    Somewhere between school crushes ,  
+    late night talks 🌙,  
+    and quiet moments…
+  </p>
+
+  <p>
+    You slowly became my safe place 🤍
+  </p>
+
+  <p>
+    Not perfect.  
+    Not easy.  
+    But real 
+  </p>
+
+  <button onclick="next(2)">Continue ➜</button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="card hidden" id="p3">
+  <p>
+    I love how you care 💕  
+    I love how you feel deeply 🫀  
+    I love how you choose me even on hard days 🤍
+  </p>
+
+  <p>
+    With you, I don’t have to pretend.  
+    I don’t have to hide.
+  </p>
+
+  <p>
+    I can just be me 🌸
+  </p>
+
+  <button onclick="next(3)">One last thing 🥺</button>
+</section>
+
+<!-- PAGE 4 -->
+<section class="card hidden" id="p4">
+  <h1>So here it is 💗</h1>
+
+  <p>
+    I don’t want perfect love.  
+    I want growing love 🌷
+  </p>
+
+  <p>
+    I want to hold your hand   
+    on good days 
+    and on heavy days 
+  </p>
+
+  <p>
+    I choose you.  
+    Again and again 💞
+  </p>
+
+  <h1>Will you be my Valentine, my forever? 💍</h1>
+</section>
+
+<audio id="music">
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
+
+<script>
+const bg = [
+  "linear-gradient(160deg,#fff0f5,#fef6ff)",
+  "linear-gradient(160deg,#fef6ff,#f0f9ff)",
+  "linear-gradient(160deg,#f0f9ff,#fff7ed)",
+  "linear-gradient(160deg,#fff7ed,#fff0f5)"
+];
+
+function next(n){
+  document.getElementById("p"+n).classList.add("hidden");
+  document.getElementById("p"+(n+1)).classList.remove("hidden");
+  document.body.style.background = bg[n];
+}
+
+function playfulNo(){
+  alert("Nice try 😌 you’re already mine 💗");
+}
+
+const confettiCanvas = document.getElementById("confetti");
+const confettiInstance = confetti.create(confettiCanvas,{resize:true});
+
+document.getElementById("p4").addEventListener("click",()=>{
+  confettiInstance({
+    particleCount:280,
+    spread:150,
+    startVelocity:55,
+    origin:{x:.5,y:.55}
+  });
+  const music=document.getElementById("music");
+  music.volume=.45;
+  music.play().catch(()=>{});
+});
+</script>
+
+</body>
+</html>
